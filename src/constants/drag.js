@@ -7,7 +7,15 @@ const drag = {
             }
         },
         datepicker: {
-            tag: 'datepicker'
+            tag: 'datepicker',
+            attrs: {}
+        },
+        elselect: {
+            tag: 'elselect',
+            attrs: {
+                caption: '',
+                options: []
+            }
         }
     },
     container: {

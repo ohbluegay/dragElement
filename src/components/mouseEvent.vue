@@ -1,6 +1,6 @@
 <template>
     <div class="component_content" @mouseenter="operateComponent(item.id)" @mouseleave="operateComponent('')">
-        <operate :componentId="item.id" />
+        <operate :componentId="item.id" :attrs="item.attrs" />
         <slot />
     </div>
 </template>

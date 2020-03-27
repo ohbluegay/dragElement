@@ -37,6 +37,11 @@ export default {
                     icon: 'el-icon-date',
                     component: 'datepicker',
                     type: 'element',
+                    name: '日历'
+                }, {
+                    icon: 'el-icon-s-management',
+                    component: 'elselect',
+                    type: 'element',
                     name: '选择器'
                 }
             ]

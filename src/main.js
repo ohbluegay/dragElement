@@ -15,12 +15,14 @@ import toolbar from 'components/containers/toolbar'
  */
 import elbutton from 'components/elements/elbutton'
 import datepicker from 'components/elements/datepicker'
+import elselect from 'components/elements/elselect'
 
 Vue.component('container', container)
 Vue.component('toolbar', toolbar)
 
 Vue.component('elbutton', elbutton)
 Vue.component('datepicker', datepicker)
+Vue.component('elselect', elselect)
 
 Vue.use(ElementUI)
 

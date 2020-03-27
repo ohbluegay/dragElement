@@ -16,10 +16,11 @@ export default new Vuex.Store({
                 borderSides: '8'
             }
         },
-        operateId: ''
+        operateId: '',
+        editId: ''
     },
     mutations: {
-        // data: { pId: 要插入的父dom id, component: 要插入的dom元素, id: 当前组件id }
+        // data: { pId: 要插入的父dom id, component: 要插入的dom元素, id: 当前组件id, type: 当前组件的类型，是容器组件or功能组件 }
         SET_JSON(state, data) {
             // 获取当前组件对应的tag JSON
             const tagJson = JSON.parse(JSON.stringify(dragJSon[data.type][data.component]))
@@ -28,27 +29,9 @@ export default new Vuex.Store({
                 if (source.id === data.pId) {
                     source.children.push(tagJson)
                 } else {
-                    if (source.hasOwnProperty('children')) {
-                        source.children.map(item => {
-                            if (item.hasOwnProperty('id') && data.pId === item.id) {
-                                item.children.push(tagJson)
-                            } else {
-                                if (item.hasOwnProperty('children')) rollmap(item)
-                            }
-                        })
-                    }
-                }
-                return source
-            }
-            state.source = rollmap(state.source)
-        },
-        // 删除组件
-        DELETE_ELEM(state, id) {
-            const rollmap = (source) => {
-                if (source.hasOwnProperty('children')) {
-                    source.children.map((item, index) => {
-                        if (item.hasOwnProperty('id') && item.id === id) {
-                            source.children.splice(index, 1)
+                    source.children.map(item => {
+                        if (item.hasOwnProperty('id') && data.pId === item.id) {
+                            item.children.push(tagJson)
                         } else {
                             if (item.hasOwnProperty('children')) rollmap(item)
                         }
@@ -57,11 +40,42 @@ export default new Vuex.Store({
                 return source
             }
             state.source = rollmap(state.source)
-            console.log(state.source)
+        },
+        // 删除组件
+        DELETE_ELEM(state, id) {
+            const rollmap = (source) => {
+                source.children.map((item, index) => {
+                    if (item.hasOwnProperty('id') && item.id === id) {
+                        source.children.splice(index, 1)
+                    } else {
+                        if (item.hasOwnProperty('children')) rollmap(item)
+                    }
+                })
+                return source
+            }
+            state.source = rollmap(state.source)
         },
         // 设置被操作的组件id
         SET_OPERATE_ID(state, id) {
             state.operateId = id
+        },
+        SET_EDIT_ID(state, id) {
+            state.editId = id
+        },
+        EDIT_COMPONENT_ATTRS(state, data) {
+            const { attrs, id } = data
+            const rollmap = (source) => {
+                source.children.map(item => {
+                    if (item.hasOwnProperty('id') && item.id === id) {
+                        item.attrs = attrs
+                    } else {
+                        if (item.hasOwnProperty('children')) rollmap(item)
+                    }
+                })
+                return source
+            }
+            state.source = rollmap(state.source)
+            console.log(state.source)
         }
     },
     actions: {
@@ -76,6 +90,14 @@ export default new Vuex.Store({
         // 操作组件
         setOperateId({ commit }, id) {
             commit('SET_OPERATE_ID', id)
+        },
+        // 设置修改的组件id
+        setEditId({ commit }, id) {
+            commit('SET_EDIT_ID', id)
+        },
+        // 修改组件属性
+        editComponentAttrs({ commit }, data) {
+            commit('EDIT_COMPONENT_ATTRS', data)
         }
     }
 })

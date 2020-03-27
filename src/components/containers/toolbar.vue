@@ -2,7 +2,7 @@
     <div class="toolbar" @drop="dropElem" @dragover="allowDrag">
         <template v-for="(item, index) in componentArray">
             <mouseevent :item="item" :key="index">
-                <component :is="item.tag" :id="item.id" />
+                <component :is="item.tag" :id="item.id" :attrs="item.attrs" />
             </mouseevent>
         </template>
     </div>
