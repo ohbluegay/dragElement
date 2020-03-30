@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import dragJSon from 'constants/drag'
+import dragJson from 'constants/drag'
 
 Vue.use(Vuex)
 
@@ -23,7 +23,7 @@ export default new Vuex.Store({
         // data: { pId: 要插入的父dom id, component: 要插入的dom元素, id: 当前组件id, type: 当前组件的类型，是容器组件or功能组件 }
         SET_JSON(state, data) {
             // 获取当前组件对应的tag JSON
-            const tagJson = JSON.parse(JSON.stringify(dragJSon[data.type][data.component]))
+            const tagJson = JSON.parse(JSON.stringify(dragJson[data.type][data.component]))
             tagJson.id = data.id
             const rollmap = (source) => {
                 if (source.id === data.pId) {
@@ -59,9 +59,11 @@ export default new Vuex.Store({
         SET_OPERATE_ID(state, id) {
             state.operateId = id
         },
+        // 设置当前编辑的组件id
         SET_EDIT_ID(state, id) {
             state.editId = id
         },
+        // 编辑组件属性值
         EDIT_COMPONENT_ATTRS(state, data) {
             const { attrs, id } = data
             const rollmap = (source) => {
@@ -75,7 +77,6 @@ export default new Vuex.Store({
                 return source
             }
             state.source = rollmap(state.source)
-            console.log(state.source)
         }
     },
     actions: {
