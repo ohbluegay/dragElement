@@ -15,12 +15,22 @@
             :show-close="false"
             width="50%">
             <el-form ref="form" :model="form" label-width="80px">
-                <el-form-item label="属性">
-                    <el-input v-model="form.attrs"></el-input>
+                <el-form-item label="描述">
+                    <el-input v-model="form.captions" placeholder="描述" />
+                </el-form-item>
+                <template v-for="(item, index) in form.options">
+                    <el-form-item :label="'选项'+index" :key="item.id" class="selectoption">
+                        <el-input v-model="item.label" placeholder="选项名" />
+                        <el-input v-model="item.value" placeholder="选项值" />
+                        <el-button @click="removeOption(item.id)" type="danger" icon="el-icon-delete" circle />
+                    </el-form-item>
+                </template>
+                <el-form-item>
+                    <el-button @click="addOption">添加选项</el-button>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="setEditId('')">取 消</el-button>
+                <el-button @click="resetEdit">取 消</el-button>
                 <el-button type="primary" @click="comfirmEdit">确 定</el-button>
             </span>
         </el-dialog>
@@ -34,7 +44,8 @@ export default {
         return {
             value: '',
             form: {
-                attrs: JSON.stringify(this.attrs)
+                caption: '',
+                options: []
             }
         }
     },
@@ -64,13 +75,34 @@ export default {
             'editComponentAttrs'
         ]),
         comfirmEdit() {
-            const attrs = JSON.parse(this.form.attrs)
             this.editComponentAttrs({
-                attrs,
+                attrs: this.form,
                 id: this.id
             })
             this.setEditId('')
+        },
+        resetEdit() {
+            this.form.caption = this.attrs.attrs
+            this.form.options = this.attrs.options
+            this.setEditId('')
+        },
+        addOption() {
+            const options = JSON.parse(JSON.stringify(this.form.options))
+            options.push({
+                label: '',
+                value: '',
+                id: new Date().getTime()
+            })
+            this.$set(this.form, 'options', options)
+        },
+        removeOption(id) {
+            const options = this.form.options.filter(item => item.id !== id)
+            this.$set(this.form, 'options', options)
         }
+    },
+    created() {
+        this.form.caption = this.attrs.attrs
+        this.form.options = this.attrs.options
     }
 }
 </script>
@@ -82,6 +114,16 @@ export default {
         .caption {
             font-size: 16px;
             padding: 0 5px;
+        }
+    }
+</style>
+<style lang="less">
+    .selectoption {
+        .el-form-item__content {
+            display: flex;
+            input {
+                width: 100px;
+            }
         }
     }
 </style>
