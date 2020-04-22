@@ -32,8 +32,9 @@ export default {
     },
     methods: {
         saveJson() {
-            setJson(removeJsonId(this.source)).then((res) => {
-                console.log(res)
+            const data = JSON.parse(JSON.stringify(removeJsonId(this.source)))
+            setJson(data).then((res) => {
+                console.log(data)
             })
         }
     },
