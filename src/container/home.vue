@@ -6,9 +6,7 @@
            </el-col>
            <el-col :span="18">
                <el_content id="content_0" />
-               <el-row>
-                   <el-button type="primary" @click="saveJson">保存</el-button>
-               </el-row>
+               <div class="operate"><el-button type="primary" @click="saveJson">保存</el-button></div>
            </el-col>
        </el-row>
    </div>
@@ -49,4 +47,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.operate {
+    display: flex;
+    padding-top: 20px;
+    justify-content: flex-end;
+}
 </style>

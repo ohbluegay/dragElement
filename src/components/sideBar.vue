@@ -47,9 +47,9 @@ export default {
                     type: 'container',
                     name: '栅格3_2'
                 }, {
-                    component: 'container1_2',
+                    component: 'container2_1',
                     type: 'container',
-                    name: '栅格1_2'
+                    name: '栅格2_1'
                 }
             ],
             operateComponnet: [
@@ -65,6 +65,10 @@ export default {
                     component: 'elselect',
                     type: 'element',
                     name: '选择器'
+                }, {
+                    component: 'chart',
+                    type: 'element',
+                    name: '折线图'
                 }
             ]
         }

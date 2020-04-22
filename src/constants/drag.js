@@ -19,6 +19,10 @@ const drag = {
                     value: 1
                 }]
             }
+        },
+        chart: {
+            tag: 'chart',
+            attrs: {}
         }
     },
     container: {
@@ -67,7 +71,7 @@ const drag = {
             },
             children: []
         },
-        container1_2: {
+        container2_1: {
             tag: 'container',
             attrs: {
                 name: 'ctright',
