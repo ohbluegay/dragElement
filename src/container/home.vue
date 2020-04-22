@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         saveJson() {
-            const data = JSON.parse(JSON.stringify(removeJsonId(this.source)))
+            const data = removeJsonId(JSON.parse(JSON.stringify(this.source)))
             setJson(data).then((res) => {
                 console.log(data)
             })
