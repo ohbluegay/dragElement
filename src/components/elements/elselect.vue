@@ -19,10 +19,10 @@
                     <el-input v-model="form.captions" placeholder="描述" />
                 </el-form-item>
                 <template v-for="(item, index) in form.options">
-                    <el-form-item :label="'选项'+index" :key="item.value" class="selectoption">
+                    <el-form-item :label="'选项'+index" :key="item.id" class="selectoption">
                         <el-input v-model="item.label" placeholder="选项名" />
                         <el-input v-model="item.value" placeholder="选项值" />
-                        <el-button @click="removeOption(item.value)" type="danger" icon="el-icon-delete" circle />
+                        <el-button @click="removeOption(item.id)" type="danger" icon="el-icon-delete" circle />
                     </el-form-item>
                 </template>
                 <el-form-item>
@@ -90,12 +90,13 @@ export default {
             const options = JSON.parse(JSON.stringify(this.form.options))
             options.push({
                 label: '',
-                value: ''
+                value: '',
+                id: new Date().getTime()
             })
             this.$set(this.form, 'options', options)
         },
-        removeOption(value) {
-            const options = this.form.options.filter(item => item.value !== value)
+        removeOption(id) {
+            const options = this.form.options.filter(item => item.id !== id)
             this.$set(this.form, 'options', options)
         }
     },
