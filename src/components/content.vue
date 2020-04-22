@@ -1,10 +1,12 @@
 <template>
     <div class="content" @drop="dropElem" @dragover="allowDrag">
-        <template v-for="(item, index) in source.children">
-            <mouseevent :item="item" :key="index">
-                <component :is="item.tag" :id="item.id" />
-            </mouseevent>
-        </template>
+        <el-row>
+            <template v-for="(item, index) in source.children">
+                <mouseevent :item="item" :key="index">
+                    <component :is="item.tag" :id="item.id" />
+                </mouseevent>
+            </template>
+        </el-row>
     </div>
 </template>
 <script>
@@ -49,7 +51,6 @@ export default {
 
 <style lang="less" scoped>
     .content {
-        width: 100%;
         min-height: 150px;
         padding: 20px;
         border: 1px solid #ddd;

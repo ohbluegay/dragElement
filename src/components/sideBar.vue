@@ -1,14 +1,27 @@
 <template>
     <div class="elementChoose">
-        <el-alert
-            title="可选组件"
+        <div class="componentType">
+            <el-alert
+            title="容器组件"
             type="success"
             :closable="false" />
-        <el-row>
-            <el-col :span="12" v-for="(item, index) in dragData" :key="index">
-                <div draggable="true" class="content" @dragstart="drag" :data-component="item.component" :data-type="item.type"><i :class="item.icon"></i></div>
-            </el-col>
-        </el-row>
+            <el-row>
+                <el-col :span="12" v-for="(item, index) in containerComponent" :key="index">
+                    <div draggable="true" class="content" @dragstart="drag" :data-component="item.component" :data-type="item.type">{{item.name}}</div>
+                </el-col>
+            </el-row>
+        </div>
+        <div class="componentType">
+            <el-alert
+            title="功能组件"
+            type="success"
+            :closable="false" />
+            <el-row>
+                <el-col :span="12" v-for="(item, index) in operateComponnet" :key="index">
+                    <div draggable="true" class="content" @dragstart="drag" :data-component="item.component" :data-type="item.type">{{item.name}}</div>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 
@@ -16,30 +29,39 @@
 export default {
     data() {
         return {
-            dragData: [
+            containerComponent: [
                 {
-                    icon: 'el-icon-s-grid',
                     component: 'container',
                     type: 'container',
                     name: '组件容器'
                 },{
-                    icon: 'el-icon-menu',
                     component: 'toolbar',
                     type: 'container',
                     name: '操作容器'
-                },
+                }, {
+                    component: 'container3_1',
+                    type: 'container',
+                    name: '栅格3_1'
+                }, {
+                    component: 'container3_2',
+                    type: 'container',
+                    name: '栅格3_2'
+                }, {
+                    component: 'container1_2',
+                    type: 'container',
+                    name: '栅格1_2'
+                }
+            ],
+            operateComponnet: [
                 {
-                    icon: 'el-icon-edit',
                     component: 'elbutton',
                     type: 'element',
                     name: '按钮'
                 }, {
-                    icon: 'el-icon-date',
                     component: 'datepicker',
                     type: 'element',
                     name: '日历'
                 }, {
-                    icon: 'el-icon-s-management',
                     component: 'elselect',
                     type: 'element',
                     name: '选择器'
@@ -70,6 +92,11 @@ export default {
         justify-content: center;
         align-items: center;
         background: rgba(0, 160, 220);
+        color: #fff;
+        font-size: 12px;
         cursor: move;
+    }
+    .componentType {
+        margin-bottom: 20px;
     }
 </style>

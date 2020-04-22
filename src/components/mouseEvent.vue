@@ -31,7 +31,6 @@ export default {
 
 <style lang="less" scoped>
 .component_content {
-    padding: 5px 10px;
     position: relative;
     .operate {
         position: absolute;

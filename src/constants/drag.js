@@ -46,6 +46,36 @@ const drag = {
             tag: 'sheetcontrol',
             attrs: {},
             children: []
+        },
+        container3_1: {
+            tag: 'container',
+            attrs: {
+                name: 'ctright',
+                padding: '0',
+                borderSides: '8',
+                span: 8
+            },
+            children: []
+        },
+        container3_2: {
+            tag: 'container',
+            attrs: {
+                name: 'ctright',
+                padding: '0',
+                borderSides: '8',
+                span: 16
+            },
+            children: []
+        },
+        container1_2: {
+            tag: 'container',
+            attrs: {
+                name: 'ctright',
+                padding: '0',
+                borderSides: '8',
+                span: 12
+            },
+            children: []
         }
     }
 }
