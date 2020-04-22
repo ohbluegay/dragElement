@@ -19,6 +19,23 @@ const renderTagChildren = (id, data) => {
     return components
 }
 
+// 删除json id
+const removeJsonId = (data) => {
+    const rollremove = (source) => {
+        Object.keys(source).map(item => {
+            if (item === 'id') delete source[item]
+            if (Array.isArray(source[item])) {
+                source[item].map(sub => rollremove(sub))
+            } else {
+                if (typeof source[item] === 'object') rollremove(source[item])
+            }
+        })
+    }
+    rollremove(data)
+    return data
+}
+
 module.exports = {
-    renderTagChildren
+    renderTagChildren,
+    removeJsonId
 }

@@ -18,6 +18,7 @@
 import sidebar from 'components/sideBar'
 import content from 'components/content'
 import { getJson, setJson } from 'utils/api'
+import { removeJsonId } from 'utils'
 import { mapState } from 'vuex'
 export default {
     computed: {
@@ -31,7 +32,7 @@ export default {
     },
     methods: {
         saveJson() {
-            setJson(this.source).then((res) => {
+            setJson(removeJsonId(this.source)).then((res) => {
                 console.log(res)
             })
         }

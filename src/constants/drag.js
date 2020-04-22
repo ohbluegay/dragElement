@@ -14,7 +14,10 @@ const drag = {
             tag: 'elselect',
             attrs: {
                 caption: '',
-                options: []
+                options: [{
+                    label: '选项1',
+                    value: 1
+                }]
             }
         }
     },
