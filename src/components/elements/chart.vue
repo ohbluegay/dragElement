@@ -9,6 +9,9 @@ export default {
     data() {
         return {
             options: {
+                tooltip: {
+                    show: true
+                },
                 xAxis: {
                     type: 'category',
                     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

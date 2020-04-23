@@ -80,6 +80,21 @@ const drag = {
                 span: 12
             },
             children: []
+        },
+        sheetcontrol: {
+            tag: 'sheetcontrol',
+            attrs: {},
+            children: [
+                {
+                    tag: 'sheetitem',
+                    attrs: {
+                        name: '选项卡1',
+                        value: 1
+                    },
+                    id: 'sheetitem_' + new Date().getTime(),
+                    children: []
+                }
+            ]
         }
     }
 }

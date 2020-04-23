@@ -50,6 +50,10 @@ export default {
                     component: 'container2_1',
                     type: 'container',
                     name: '栅格2_1'
+                }, {
+                    component: 'sheetcontrol',
+                    type: 'container',
+                    name: '选项卡'
                 }
             ],
             operateComponnet: [

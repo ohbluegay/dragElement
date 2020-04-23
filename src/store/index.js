@@ -77,6 +77,24 @@ export default new Vuex.Store({
                 return source
             }
             state.source = rollmap(state.source)
+        },
+        // 修改组件子节点
+        EDIT_COMPONENT_CHILDREN(state, data) {
+            const rollmap = (source) => {
+                if (source.id === data.pId) {
+                    source.children = data.children
+                } else {
+                    source.children.map(item => {
+                        if (item.hasOwnProperty('id') && data.pId === item.id) {
+                            item.children = data.children
+                        } else {
+                            if (item.hasOwnProperty('children')) rollmap(item)
+                        }
+                    })
+                }
+                return source
+            }
+            state.source = rollmap(state.source)
         }
     },
     actions: {
@@ -99,6 +117,10 @@ export default new Vuex.Store({
         // 修改组件属性
         editComponentAttrs({ commit }, data) {
             commit('EDIT_COMPONENT_ATTRS', data)
+        },
+        // 修改组件子节点
+        editComponentChildren({ commit }, data) {
+            commit('EDIT_COMPONENT_CHILDREN', data)
         }
     }
 })
