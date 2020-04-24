@@ -82,8 +82,7 @@ export default {
             this.setEditId('')
         },
         resetEdit() {
-            this.form.caption = this.attrs.attrs
-            this.form.options = this.attrs.options
+            this.form = JSON.parse(JSON.stringify(this.attrs))
             this.setEditId('')
         },
         addOption() {
@@ -101,8 +100,7 @@ export default {
         }
     },
     created() {
-        this.form.caption = this.attrs.attrs
-        this.form.options = this.attrs.options
+        this.form = JSON.parse(JSON.stringify(this.attrs))
     }
 }
 </script>
